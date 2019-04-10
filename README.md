@@ -1,0 +1,1 @@
+# autoTests - introduction to Selenium
