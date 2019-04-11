@@ -73,14 +73,11 @@ public class LocatorsTest {
         String firstFriendId = firstFriend.getAttribute("href").replaceAll("https://ok.ru/profile/", "");
         System.out.println("First friend id: " + firstFriendId);
 
-        String typeToFirstFriendLocator = String.format("//a[@data-l='t,sendMessage' and contains(@href,'%s')]", firstFriendId);
+        String typeToFirstFriendLocator = String.format("//a[@data-l='t,sendMessage' and contains(@href,'%s') and contains(@class, '__wide')]", firstFriendId);
         System.out.println("Type to first friend locator: " + typeToFirstFriendLocator);
 
-        //Странно, локатор верный, а по клику не переходит
-        //driver.findElement(By.xpath(typeToFirstFriendLocator)).click();
+        driver.findElement(By.xpath(typeToFirstFriendLocator)).click();
 
-        //OK, перейдём по URL
-        driver.get(baseUrl + "/messages/" + firstFriendId);
         String openedChatTitle = driver.findElement(By.xpath("//span[@data-l='t,menu_opponent_name']")).getText();
         System.out.println("Opened chat title: " + openedChatTitle);
         String chatAtLeftColumnLocator = String.format("//div[@data-id='PRIVATE_%s' and @data-l='t,item']", firstFriendId);
